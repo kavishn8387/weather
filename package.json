@@ -57,6 +57,7 @@
     "react-router": "^5.1.2",
     "react-router-dom": "^5.1.2",
     "react-router-redux": "^4.0.8",
+    "recompose": "^0.30.0",
     "redux": "^4.0.4",
     "redux-form": "^8.2.6",
     "redux-persist": "^6.0.0",
@@ -148,5 +149,8 @@
     "presets": [
       "react-app"
     ]
+  },
+  "devDependencies": {
+    "less-loader": "^5.0.0"
   }
 }

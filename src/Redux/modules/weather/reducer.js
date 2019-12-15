@@ -1,8 +1,8 @@
 import {
-    PRO_REQUESTING,
-    PRO_SUCCESS,
-    PRO_ERROR,
-    SET_PROLIST
+    WEATHER_REQUESTING,
+    WEATHER_SUCCESS,
+    WEATHER_ERROR,
+    SET_WEATHERLIST
 } from './constants';
 
 const initialState = {
@@ -12,17 +12,17 @@ const initialState = {
     errors: [],
     data: []
 
-    // @TODO   need improvement in data {notstarted, in progress, submitted, expired}  as a object.
+    // @TODO   need imWEATHERvement in data {notstarted, in WEATHERgress, submitted, expired}  as a object.
 };
 
-const pro = function proReducer(state = initialState, action) {
+const weather = function weatherReducer(state = initialState, action) {
     switch (action.type) {
-        case SET_PROLIST:
+        case SET_WEATHERLIST:
             return {
                 data: action
             }
         // Set the requesting flag and append a message to be shown
-        case PRO_REQUESTING:
+        case WEATHER_REQUESTING:
             return {
                 requesting: true,
                 successful: false,
@@ -30,8 +30,8 @@ const pro = function proReducer(state = initialState, action) {
                 errors: [],
             }
 
-        // Successful?  Reset the pro state.
-        case PRO_SUCCESS:
+        // Successful?  Reset the WEATHER state.
+        case WEATHER_SUCCESS:
             return {
                 errors: [],
                 messages: [],
@@ -41,7 +41,7 @@ const pro = function proReducer(state = initialState, action) {
 
         // Append the error returned from our api
         // set the success and requesting flags to false
-        case PRO_ERROR:
+        case WEATHER_ERROR:
             return {
                 errors: state.errors.concat([{
                     body: action.error.toString(),
@@ -57,4 +57,4 @@ const pro = function proReducer(state = initialState, action) {
     }
 };
 
-export default pro;
+export default weather;

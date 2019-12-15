@@ -9,7 +9,7 @@ import {
 } from '../modules/login/constants';
 
 import { setClient, unsetClient } from '../modules/user/actions';
-import { setIdleTimeFlag } from '../modules/idleTime/actions';
+// import { setIdleTimeFlag } from '../modules/idleTime/actions';
 
 import { CLIENT_UNSET } from '../modules/user/constants';
 
@@ -60,7 +60,7 @@ function* loginFlow(loginParams) {
 
         if (token.token) {
             console.log('sdsssss')
-            yield put(push('/dashboard'));
+            // yield put(push('/dashboard'));
         } else {
             yield put(push('/'));
         }

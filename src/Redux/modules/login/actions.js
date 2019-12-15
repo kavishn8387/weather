@@ -1,5 +1,5 @@
 import {  
-    LOGIN_REQUESTING, CLEAR_REQUESTING
+    LOGIN_REQUESTING, CLEAR_REQUESTING, LOGOUT_REQUESTING
   } from './constants';
   
   // In order to perform an action of type LOGIN_REQUESTING
@@ -17,5 +17,11 @@ import {
   export const clearError = function clearRequest () {
     return {
       type: CLEAR_REQUESTING,
+    } 
+  }
+
+  export const logoutRequest = function logoutRequest () {
+    return {
+      type: LOGOUT_REQUESTING,
     } 
   }

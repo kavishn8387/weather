@@ -1,1 +1,0 @@
-export const IDLE_SET = "IDLE_SET";
