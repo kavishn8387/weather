@@ -1,0 +1,62 @@
+.login-wrapper {
+  display: block;
+  background: transparent;
+  width: 100%;
+}
+.login-wrapper .login__container {
+  width: 100%;
+}
+.login-wrapper .login__container .welcome-title {
+  padding: 50px 0;
+  color: #333333;
+  font-size: 2.125rem;
+  font-weight: 500;
+  line-height: 41px;
+}
+@media (max-width: 960px) {
+  .login-wrapper .login__container .welcome-title {
+    padding: 25px 0 10px 0;
+  }
+}
+.login-wrapper .login__container .login-form .user-input {
+  margin-bottom: 0;
+  margin-top: 20px;
+}
+.login-wrapper .login__container .login-form .password-input {
+  margin-bottom: 15px;
+}
+.login-wrapper .login__container .login-form .forgetpassword-field {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+.login-wrapper .login__container .login-form .forgetpassword-field .forgetpassword--link {
+  text-decoration: underline;
+  font-size: 18px;
+  line-height: 21px;
+  color: #39A300;
+  font-weight: 500;
+  text-transform: capitalize;
+  padding: 0;
+}
+.login-wrapper .login__container .login-form .forgetpassword-field .forgetpassword--link:hover {
+  background: transparent;
+}
+.login-wrapper .login__container .login-form .btn-submit {
+  color: #ffffff;
+  margin: 30px 0px 10px 0px;
+  height: 50px;
+  font-size: 19px;
+  line-height: 23px;
+  border-radius: 6px;
+  letter-spacing: 1px;
+  text-transform: capitalize;
+  box-shadow: none;
+  min-width: 100%;
+}
+.login-wrapper .login__container .login-form .btn-submit span {
+  color: #ffffff;
+}
+.login-wrapper .login__container .login-form .background {
+  background-color: #39A200;
+}
