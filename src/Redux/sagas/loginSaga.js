@@ -12,6 +12,8 @@ import { setClient, unsetClient } from '../modules/user/actions';
 // import { setIdleTimeFlag } from '../modules/idleTime/actions';
 
 import { CLIENT_UNSET } from '../modules/user/constants';
+import { clearForecast } from '../modules/forecast/action';
+import { clearWeather } from '../modules/weather/action';
 
 function loginApi(email, password, deviceId) {
     const params = { email, password, deviceId };
@@ -28,6 +30,8 @@ function loginApi(email, password, deviceId) {
 
 function* logout() {
     yield put(unsetClient());
+    yield put(clearForecast());
+    yield put(clearWeather());
 
     localStorage.removeItem('token');
 

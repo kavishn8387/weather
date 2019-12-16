@@ -1,24 +1,11 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { Grid, Button } from '@material-ui/core';
+import { Grid, Button, CssBaseline, Container, AppBar, Box, Card, CardActions, CardContent, CardHeader, Toolbar, Typography, Link, withStyles } from '@material-ui/core';
 import City from '../../Components/City';
 import WeatherData from '../../Components/WeatherData';
 import { logoutRequest } from '../../Redux/modules/login/actions';
-
-
-import AppBar from '@material-ui/core/AppBar';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardHeader from '@material-ui/core/CardHeader';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import StarIcon from '@material-ui/icons/StarBorder';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Link from '@material-ui/core/Link';
-import { withStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import Box from '@material-ui/core/Box';
+import { clearForecast } from '../../Redux/modules/forecast/action';
+import { clearWeather } from '../../Redux/modules/weather/action';
 import styles from './styles.js';
 import { Aboutus } from '../../Components/AboutUs';
 
@@ -42,6 +29,8 @@ class Dashboard extends PureComponent {
     logout = () => {
         console.log('logout');
         this.props.logoutRequest();
+        this.props.clearForecast();
+        this.props.clearWeather();
         this.props.history.push('/');
     }
 
@@ -152,7 +141,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    logoutRequest: () => dispatch(logoutRequest())
+    logoutRequest: () => dispatch(logoutRequest()),
+    clearForecast: () => dispatch(clearForecast()),
+    clearWeather: () => dispatch(clearWeather())
 });
 
 export default withStyles(styles, { withTheme: true })(connect(mapStateToProps, mapDispatchToProps)(Dashboard));

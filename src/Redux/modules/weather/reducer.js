@@ -2,7 +2,8 @@ import {
     WEATHER_REQUESTING,
     WEATHER_SUCCESS,
     WEATHER_ERROR,
-    SET_WEATHERLIST
+    SET_WEATHERLIST,
+    CLEAR_WEATHER
 } from './constants';
 
 const initialState = {
@@ -37,6 +38,15 @@ const weather = function weatherReducer(state = initialState, action) {
                 messages: [],
                 requesting: false,
                 successful: true,
+            }
+        
+        case CLEAR_WEATHER:
+            return {
+                errors: [],
+                messages: [],
+                requesting: false,
+                successful: true,
+                data: []
             }
 
         // Append the error returned from our api

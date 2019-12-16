@@ -1,5 +1,5 @@
 import {  
-    WEATHER_REQUESTING, SET_WEATHERLIST
+    WEATHER_REQUESTING, SET_WEATHERLIST, CLEAR_WEATHER
   } from './constants';
   
   export const weatherRequest = function weatherRequest (data) {
@@ -15,4 +15,11 @@ import {
         type: SET_WEATHERLIST,
         ...data
     }
+};
+
+
+export const clearWeather = function clearWeather (data) {
+  return {
+      type: CLEAR_WEATHER,
+  }
 };

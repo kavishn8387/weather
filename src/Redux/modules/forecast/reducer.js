@@ -2,7 +2,8 @@ import {
     FORECAST_REQUESTING,
     FORECAST_SUCCESS,
     FORECAST_ERROR,
-    SET_FORECASTLIST
+    SET_FORECASTLIST,
+    CLEAR_FORECAST
 } from './constants';
 
 const initialState = {
@@ -36,6 +37,14 @@ const forecast = function forecastReducer(state = initialState, action) {
                 messages: [],
                 requesting: false,
                 successful: true,
+            }
+        case CLEAR_FORECAST:
+            return {
+                errors: [],
+                messages: [],
+                requesting: false,
+                successful: false,
+                data: []
             }
 
         // Append the error returned from our api

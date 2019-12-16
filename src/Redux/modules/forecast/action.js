@@ -1,5 +1,5 @@
 import {  
-    FORECAST_REQUESTING, SET_FORECASTLIST
+    FORECAST_REQUESTING, SET_FORECASTLIST, CLEAR_FORECAST
   } from './constants';
   
   export const forecastRequest = function forecastRequest (data) {
@@ -15,4 +15,10 @@ import {
         type: SET_FORECASTLIST,
         ...data
     }
+};
+
+export const clearForecast = function clearForecast () {
+  return {
+      type: CLEAR_FORECAST,
+  }
 };

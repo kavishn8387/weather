@@ -9,7 +9,7 @@ class City extends PureComponent {
     constructor(props) {
         super(props);
         this.state = {
-            city: ''
+            city: undefined
         }
     }
 
@@ -54,7 +54,7 @@ class City extends PureComponent {
                 >
                     <Select
                         native
-                        value={city}
+                        value={city || 'select'}
                         onChange={this.handleChange}
                         fullWidth
                         placeholder="List of cities"
