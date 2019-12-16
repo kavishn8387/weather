@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 
 class App extends Component {
 	render() {
-		console.log('props', this.props);
+		// console.log('props', this.props);
 		const { store } = this.props;
 		return (
 			<Provider store={store}>
