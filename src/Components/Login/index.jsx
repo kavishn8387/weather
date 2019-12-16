@@ -1,11 +1,8 @@
 import React, { PureComponent } from 'react';
 import { withRouter } from 'react-router-dom';
-import compose from 'recompose/compose'
 import cx from 'classnames';
-import { reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
-import { Typography, Button, CssBaseline, TextField, MuiThemeProvider, Grid, Avatar, FormControlLabel, Container, Checkbox, Link, Box } from '@material-ui/core';
-import theme from '../../Common/style/theme';
+import { Typography, Button, CssBaseline, TextField, Grid, Avatar, FormControlLabel, Container, Checkbox, Link, Box } from '@material-ui/core';
 import loginRequest, { clearError } from '../../Redux/modules/login/actions';
 import PasswordInput from '../../Components/PasswordInput/PasswordInput';
 import styles from './styles.js';
@@ -151,7 +148,7 @@ class Login extends PureComponent {
         const emailBorder = emailError ? { error: true } : {};
         const passwordBorder = passwordError ? { error: true } : {};
         const extProp = buttonEnabled === true ? '' : { disabled: true };
-        const { login, history, classes } = this.props;
+        const { classes } = this.props;
 
         return (
             <Container component="main" maxWidth="xs">

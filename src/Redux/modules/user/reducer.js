@@ -14,7 +14,7 @@ const reducer = function clientReducer(state = initialSate, action) {
                 userData: action.data
             }
         case CLIENT_SET:
-            const data =  state.userData !== undefined && state.userData !== null && state.userData.email || {};
+            const data =  state.userData !== undefined && state.userData !== null && state.userData.email || {}; // eslint-disable-line
             return {
                 ...data,
                 ...action.token

@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { Grid, Button, CssBaseline, AppBar, Box, Card, CardActions, CardContent, CardHeader, Toolbar, Typography, Link, withStyles } from '@material-ui/core';
+import { Grid, Button, CssBaseline, AppBar, Toolbar, Typography, withStyles } from '@material-ui/core';
 import City from '../../Components/City';
 import WeatherData from '../../Components/WeatherData';
 import { logoutRequest } from '../../Redux/modules/login/actions';

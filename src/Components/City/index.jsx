@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
-import { Grid, MenuItem, Select, FormControl, InputLabel } from '@material-ui/core';
-// import Axios from 'axios';
+import { Grid, Select, FormControl } from '@material-ui/core';
 import { connect } from 'react-redux';
 import { weatherRequest } from '../../Redux/modules/weather/action';
 import { forecastRequest } from '../../Redux/modules/forecast/action';

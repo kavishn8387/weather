@@ -1,4 +1,4 @@
-import { take, fork, cancel, call, put, cancelled } from 'redux-saga/effects';
+import { take, fork, call, put, cancelled } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
 import Axios from 'axios';
 import {

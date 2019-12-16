@@ -16,8 +16,6 @@ import { clearForecast } from '../modules/forecast/action';
 import { clearWeather } from '../modules/weather/action';
 
 function loginApi(email, password, deviceId) {
-    const params = { email, password, deviceId };
-
     let data;
     if(email === 'kavishn8387@gmail.com' && password === 'Test@1234') {
         data = { token: true, email: 'kavishn8387@gmail.com' };
