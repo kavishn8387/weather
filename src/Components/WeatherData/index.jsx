@@ -1,9 +1,24 @@
 import React, { PureComponent } from 'react';
-import { Grid, Card, CardHeader, CardContent, Typography } from '@material-ui/core';
+import { Grid, Card, CardHeader, CardContent, Typography, List, ListItem, Divider } from '@material-ui/core';
 
 class WeatherData extends PureComponent {
-    render () {
+    constructor(props) {
+        super(props);
         const { title, data} = this.props;
+        this.state = {
+            title,
+            data
+        }
+
+    }
+    render () {
+        const { title, data} = this.state;
+        // const forecastData = data.list && data.list.map((item) => {
+        //     return {
+        //         date: item.dt_txt
+        //     }
+        // });
+        // console.log('forecast', forecastData);
         return (
             <Grid item xs={12} sm={6} md={12}>
                 <Card>
@@ -23,16 +38,38 @@ class WeatherData extends PureComponent {
                                 {data}
                             </Typography> */}
                             <Typography variant="h6" color="textSecondary">
-                                {data}
+                            {/* {forecastData && forecastData.date} Hello */}
+                            {
+                                data.list && <List>
+                                    {
+                                        data.list.map((item) => (
+                                            <React.Fragment>
+                                                <ListItem>
+                                                    DateTime : {item.dt_txt} <br />
+                                                    Weather: {item.weather[0].description} <br />
+                                                    Clouds: {item.clouds.all} <br />
+                                                    Wind: {item.wind.speed} speed ({item.wind.deg} deg)
+                                                </ListItem>
+                                                <Divider />
+                                            </React.Fragment>  
+                                        ))
+                                    }
+                                </List>
+                            }
+
+                            {
+                                data.coord && <List>
+                                    {
+                                        <ListItem>
+                                            Weather: {data.weather[0].description} <br />
+                                            Clouds: {data.clouds.all} <br />
+                                            Wind: {data.wind.speed} speed ({data.wind.deg} deg)
+                                        </ListItem>
+                                    }
+                                </List>
+                            }
                             </Typography>
                         </div>
-                        {/* <ul>
-                            {tier.description.map(line => (
-                                <Typography component="li" variant="subtitle1" align="center" key={line}>
-                                    {line}
-                                </Typography>
-                            ))}
-                        </ul> */}
                     </CardContent>
                 </Card>
             </Grid>

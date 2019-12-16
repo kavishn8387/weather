@@ -20,83 +20,20 @@ import { withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
 import styles from './styles.js';
-
-
-function Copyright() {
-    return (
-        <Typography variant="body2" color="textSecondary" align="center">
-            {'Copyright © '}
-            <Link color="inherit" href="https://material-ui.com/">
-                Your Website
-        </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
-    );
-}
-
-const tiers = [
-    {
-        title: 'Free',
-        price: '0',
-        description: ['10 users included', '2 GB of storage', 'Help center access', 'Email support'],
-        buttonText: 'Sign up for free',
-        buttonVariant: 'outlined',
-    },
-    {
-        title: 'Pro',
-        subheader: 'Most popular',
-        price: '15',
-        description: [
-            '20 users included',
-            '10 GB of storage',
-            'Help center access',
-            'Priority email support',
-        ],
-        buttonText: 'Get started',
-        buttonVariant: 'contained',
-    },
-    {
-        title: 'Enterprise',
-        price: '30',
-        description: [
-            '50 users included',
-            '30 GB of storage',
-            'Help center access',
-            'Phone & email support',
-        ],
-        buttonText: 'Contact us',
-        buttonVariant: 'outlined',
-    },
-];
-const footers = [
-    {
-        title: 'Company',
-        description: ['Team', 'History', 'Contact us', 'Locations'],
-    },
-    {
-        title: 'Features',
-        description: ['Cool stuff', 'Random feature', 'Team feature', 'Developer stuff', 'Another one'],
-    },
-    {
-        title: 'Resources',
-        description: ['Resource', 'Resource name', 'Another resource', 'Final resource'],
-    },
-    {
-        title: 'Legal',
-        description: ['Privacy policy', 'Terms of use'],
-    },
-];
+import { Aboutus } from '../../Components/AboutUs';
 
 class Dashboard extends PureComponent {
-    // componentDidMount = () => {
+    constructor(props) {
+        super(props);
 
-    // }
+        this.state = {
+            aboutUs: false
+        }
+    }
 
     componentWillMount = () => {
         const { login, history, user } = this.props;
-        // return !(JSON.stringify(nextProps) == JSON.stringify(this.props) && JSON.stringify(nextState) == JSON.stringify(this.state)); // eslint-disable-line
-        console.log('llllll', login, user)
+        // console.log('llllll', login, user)
         if (!(login && login.successful && user && user.token === true)) {
             history.push('/');
         }
@@ -107,12 +44,25 @@ class Dashboard extends PureComponent {
         this.props.logoutRequest();
         this.props.history.push('/');
     }
+
+    openAboutUs = () => {
+        this.setState({
+            aboutUs: true
+        })
+    }
+
+    closeHandleClose = () => {
+        this.setState({
+            aboutUs: false
+        })
+    }
+
     render() {
-        const { classes } = this.props;
+        const { classes, weather, forecast } = this.props;
+        const { aboutUs } = this.state;
+        // console.log('eweather', weather.data.data, forecast.data.data);
         return (
             <Grid container>
-
-
                 <React.Fragment>
                     <CssBaseline />
                     <AppBar position="static" color="default" elevation={0} className={classes.appBar}>
@@ -151,10 +101,10 @@ class Dashboard extends PureComponent {
                     <Container maxWidth="md" component="main">
                         <Grid container spacing={5} alignItems="flex-end">
                             <Grid item xs={12} sm={6} md={6}>
-                                <WeatherData data="test" title="Current Weather Data" />
+                                {weather && weather.data && weather.data.data && <WeatherData data={weather.data.data} title="Current Weather Data" />}
                             </Grid>
                             <Grid item xs={12} sm={6} md={6}>
-                                <WeatherData data="test" title="5 Day Weather Forecast" />
+                                {forecast && forecast.data && forecast.data.data && <WeatherData data={forecast.data.data} title="5 Day Weather Forecast" />}
                             </Grid>
 
                             
@@ -181,15 +131,13 @@ class Dashboard extends PureComponent {
                             ))} */}
                         </Grid>
                         <Box mt={5}>
-                            {/* <Copyright /> */}
-
-                            <Button onClick='' color="primary" variant="outlined" className={classes.link}>
+                            <Button onClick={this.openAboutUs} color="primary" variant="outlined" className={classes.link}>
                                 About Us
                             </Button>
 
                         </Box>
                     </Container>
-                    {/* End footer */}
+                    {aboutUs && <Aboutus open handleClose={this.closeHandleClose} />}
                 </React.Fragment>
             </Grid>
         )
@@ -198,23 +146,14 @@ class Dashboard extends PureComponent {
 
 const mapStateToProps = (state) => ({
     login: state.login,
-    errors: state.login.errors || 0,
-    user: state.user
+    user: state.user,
+    weather: state.weather,
+    forecast: state.forecast
 });
 
 const mapDispatchToProps = (dispatch) => ({
     logoutRequest: () => dispatch(logoutRequest())
 });
-
-// // make Redux state piece of `login` and our action `loginRequest`
-// // available in this.props within our component
-// const connected = connect(mapStateToProps, mapDispatchToProps)(Login);
-
-// // in our Redux's state, this form will be available in 'form.login'
-// const formed = reduxForm({ form: 'login' })(connected);
-
-// export default withRouter(formed);
-
 
 export default withStyles(styles, { withTheme: true })(connect(mapStateToProps, mapDispatchToProps)(Dashboard));
 
