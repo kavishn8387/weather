@@ -1,0 +1,59 @@
+
+body{
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.select-wrapper {
+    padding: 30px 0;
+}
+.select-container{
+    max-width: 600px !important;
+    margin: 0 auto !important;
+}
+.select-container > div {
+    padding-top: 10px;
+}
+.weather-card-wrapper {
+    position: relative;
+    flex: 0 0 auto;
+    overflow: auto;
+    max-height: 450px;
+}
+.weather-container {
+    max-width: 1170px;
+    margin: 0 auto !important;
+    margin-bottom: 30px !important;
+}
+.weather-header {
+    border-bottom: 1px solid #ccc;
+}
+.footer-wrapper {
+    width: 100%;
+    position: fixed;
+    bottom: 10px;
+}
+.footer-container {
+    text-align: center;
+    background: #f5f5f5;
+    border-top: 1px solid #ccc;
+    padding: 10px 0;
+}
+.dialog-wrapper div[role="none presentation"]{
+    justify-content: flex-end;    
+}
+
+.dialog-wrapper div[role="dialog"]{
+    height: 100%;
+    max-height: 100%;
+    margin:0;
+}
+
+.login-wrapper {
+    border: 1px solid #ccc;
+    padding: 20px 30px;
+    border-radius: 4px;
+    background: #fff;
+    margin: 30% 0 !important;
+}

@@ -1,11 +1,13 @@
 import React from 'react';
 import { Grid, Dialog, DialogActions, Button, DialogTitle, DialogContent } from "@material-ui/core";
+import '../../Containers/Dashboard/styles.css';
 
 export const Aboutus = (props) => {
     return (
         <Grid>
             <Dialog
                 open={props.open}
+                className="dialog-wrapper"
             >
                 <DialogActions>
                     <Button onClick={props.handleClose} color="primary">

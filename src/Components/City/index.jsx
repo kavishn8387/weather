@@ -4,6 +4,7 @@ import { Grid, MenuItem, Select, FormControl, InputLabel } from '@material-ui/co
 import { connect } from 'react-redux';
 import { weatherRequest } from '../../Redux/modules/weather/action';
 import { forecastRequest } from '../../Redux/modules/forecast/action';
+import '../../Containers/Dashboard/styles.css';
 
 class City extends PureComponent {
     constructor(props) {
@@ -50,7 +51,7 @@ class City extends PureComponent {
                 <FormControl
                     variant="outlined"
                     fullWidth
-                    // className={classes.formControl}
+                    
                 >
                     <Select
                         native

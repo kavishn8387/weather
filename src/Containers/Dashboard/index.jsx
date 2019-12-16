@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { Grid, Button, CssBaseline, Container, AppBar, Box, Card, CardActions, CardContent, CardHeader, Toolbar, Typography, Link, withStyles } from '@material-ui/core';
+import { Grid, Button, CssBaseline, AppBar, Box, Card, CardActions, CardContent, CardHeader, Toolbar, Typography, Link, withStyles } from '@material-ui/core';
 import City from '../../Components/City';
 import WeatherData from '../../Components/WeatherData';
 import { logoutRequest } from '../../Redux/modules/login/actions';
@@ -59,73 +59,37 @@ class Dashboard extends PureComponent {
                             <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
                                 Weather Forecast
                             </Typography>
-                            {/* <nav>
-                                <Link variant="button" color="textPrimary" href="#" className={classes.link}>
-                                    Features
-                                </Link>
-                                <Link variant="button" color="textPrimary" href="#" className={classes.link}>
-                                    Enterprise
-                                </Link>
-                                <Link variant="button" color="textPrimary" href="#" className={classes.link}>
-                                    Support
-                                </Link>
-                            </nav> */}
                             <Button onClick={this.logout} color="primary" variant="outlined" className={classes.link}>
                                 LogOut
                             </Button>
                         </Toolbar>
                     </AppBar>
-                    {/* Hero unit */}
-                    <Container maxWidth="sm" component="main" className={classes.heroContent}>
-                        <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-                            Select City
-                            <City />
-                        </Typography>
-                        {/* <Typography variant="h5" align="center" color="textSecondary" component="p">
-                            Quickly build an effective pricing table for your potential customers with this layout.
-                            It&apos;s built with default Material-UI components with little customization.
-                        </Typography> */}
-                    </Container>
-                    {/* End hero unit */}
-                    <Container maxWidth="md" component="main">
-                        <Grid container spacing={5} alignItems="flex-end">
-                            <Grid item xs={12} sm={6} md={6}>
+                    
+                    <Grid container spacing={3} className="select-wrapper">
+                        <Grid item xs={12} className="select-container">
+                            <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
+                                    Select City
+                                    <City />
+                                </Typography>
+                        </Grid>
+                    </Grid>
+
+                    <Grid container spacing={3} className='weather-container'>
+                        <Grid item xs={6}>
                                 {weather && weather.data && weather.data.data && <WeatherData data={weather.data.data} title="Current Weather Data" />}
                             </Grid>
-                            <Grid item xs={12} sm={6} md={6}>
+                            <Grid item xs={6}>
                                 {forecast && forecast.data && forecast.data.data && <WeatherData data={forecast.data.data} title="5 Day Weather Forecast" />}
                             </Grid>
+                    </Grid>
 
-                            
-                        </Grid>
-                    </Container>
-                    {/* Footer */}
-                    <Container maxWidth="md" component="footer" className={classes.footer}>
-                        <Grid container spacing={4} justify="space-evenly">
-                            {/* {footers.map(footer => (
-                                <Grid item xs={6} sm={3} key={footer.title}>
-                                    <Typography variant="h6" color="textPrimary" gutterBottom>
-                                        {footer.title}
-                                    </Typography>
-                                    <ul>
-                                        {footer.description.map(item => (
-                                            <li key={item}>
-                                                <Link href="#" variant="subtitle1" color="textSecondary">
-                                                    {item}
-                                                </Link>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </Grid>
-                            ))} */}
-                        </Grid>
-                        <Box mt={5}>
+                    <Grid className="footer-wrapper">
+                        <Grid item xs className="footer-container">
                             <Button onClick={this.openAboutUs} color="primary" variant="outlined" className={classes.link}>
                                 About Us
                             </Button>
-
-                        </Box>
-                    </Container>
+                        </Grid>
+                    </Grid>
                     {aboutUs && <Aboutus open handleClose={this.closeHandleClose} />}
                 </React.Fragment>
             </Grid>

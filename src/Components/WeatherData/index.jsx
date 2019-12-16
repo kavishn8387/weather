@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import { Grid, Card, CardHeader, CardContent, Typography, List, ListItem, Divider } from '@material-ui/core';
+import '../../Containers/Dashboard/styles.css';
 
 class WeatherData extends PureComponent {
     constructor(props) {
@@ -13,32 +14,22 @@ class WeatherData extends PureComponent {
     }
     render () {
         const { title, data} = this.state;
-        // const forecastData = data.list && data.list.map((item) => {
-        //     return {
-        //         date: item.dt_txt
-        //     }
-        // });
-        // console.log('forecast', forecastData);
+        
         return (
             <Grid item xs={12} sm={6} md={12}>
-                <Card>
+                <Card >
                     <CardHeader
                         title={title}
-                        // subheader={tier.subheader}
                         titleTypographyProps={{ align: 'center' }}
                         subheaderTypographyProps={{ align: 'center' }}
-                        // action={title === 'Pro' ? <StarIcon /> : null}
-                        // className={classes.cardHeader}
+                        className="weather-header"
                     />
                     <CardContent>
                         <div
                             // className={classes.cardPricing}
+                            className="weather-card-wrapper"
                         >
-                            {/* <Typography component="h2" variant="h3" color="textPrimary">
-                                {data}
-                            </Typography> */}
                             <Typography variant="h6" color="textSecondary">
-                            {/* {forecastData && forecastData.date} Hello */}
                             {
                                 data.list && <List>
                                     {

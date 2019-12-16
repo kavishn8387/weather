@@ -20,9 +20,9 @@ const styles = (theme) => ({
     link: {
       margin: theme.spacing(1, 1.5),
     },
-    heroContent: {
-      padding: theme.spacing(8, 0, 6),
-    },
+    // heroContent: {
+    //   padding: theme.spacing(8, 0, 6),
+    // },
     cardHeader: {
       backgroundColor:
         theme.palette.type === 'dark' ? theme.palette.grey[700] : theme.palette.grey[200],
