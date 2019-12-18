@@ -11,7 +11,8 @@ const initialState = {
     successful: false,
     messages: [],
     errors: [],
-    data: []
+    data: [],
+    storeData: []
 
     // @TODO   need imWEATHERvement in data {notstarted, in WEATHERgress, submitted, expired}  as a object.
 };
@@ -19,16 +20,22 @@ const initialState = {
 const weather = function weatherReducer(state = initialState, action) {
     switch (action.type) {
         case SET_WEATHERLIST:
+            // console.log('action', state, 'action.data', action.data);
             return {
-                data: action
+                ...state,
+                data: [...state.data, action.data],
+                // data: action,
             }
         // Set the requesting flag and append a message to be shown
         case WEATHER_REQUESTING:
+            // console.log('state data', state)
             return {
+                ...state,
                 requesting: true,
                 successful: false,
                 messages: [{ body: 'Logging in...', time: new Date() }],
                 errors: [],
+                data: [...state.data]
             }
 
         // Successful?  Reset the WEATHER state.
@@ -38,6 +45,7 @@ const weather = function weatherReducer(state = initialState, action) {
                 messages: [],
                 requesting: false,
                 successful: true,
+                data: state.data,
             }
         
         case CLEAR_WEATHER:

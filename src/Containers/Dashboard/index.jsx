@@ -14,12 +14,38 @@ class Dashboard extends PureComponent {
         super(props);
 
         this.state = {
-            aboutUs: false
+            aboutUs: false,
+            currentWeatherData: null,
+            currentForecastData: null
         }
     }
 
+    static getDerivedStateFromProps = (props, state) => {
+        console.log('getDerivedStateFromProps', props, state)
+        const { weather, forecast } = props;
+        const { city, currentWeatherData, currentForecastData } = state;
+        let derivedState = {};
+        // const localStorageCity = localStorage.getItem('selectedCity');
+        weather && weather.data && weather.data.map((item) => {
+            if (item.name === city) {
+                derivedState = { currentWeatherData: item };
+            }
+            console.log('cityname', city, derivedState);
+        })
+        forecast && forecast.data && forecast.data.map((item) => {
+            if (item.city && item.city.name === city) {
+                derivedState = { ...derivedState, currentForecastData: item };
+            }
+            console.log('cityname', city, derivedState);
+        })
+
+        console.log('derivedState', derivedState, 'city', city);
+        return derivedState;
+    }
+
     componentWillMount = () => {
-        const { login, history, user } = this.props;
+        const { login, history, user, weather, forecast } = this.props;
+        const { city } = this.state;
         // console.log('llllll', login, user)
         if (!(login && login.successful && user && user.token === true)) {
             history.push('/');
@@ -46,10 +72,15 @@ class Dashboard extends PureComponent {
         })
     }
 
+    handleCity = (city) => {
+        this.setState({ city })
+    }
+
     render() {
         const { classes, weather, forecast } = this.props;
-        const { aboutUs } = this.state;
-        // console.log('eweather', weather.data.data, forecast.data.data);
+        const { aboutUs, city, currentWeatherData, currentForecastData } = this.state;
+        console.log('currentWeatherData inside dashboard', currentWeatherData, 'currentForecastData', currentForecastData);
+
         return (
             <Grid container>
                 <React.Fragment>
@@ -67,19 +98,19 @@ class Dashboard extends PureComponent {
                     
                     <Grid container spacing={3} className="select-wrapper">
                         <Grid item xs={12} className="select-container">
-                            <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
+                            <Typography component="h1" variant="h4" align="center" color="textPrimary" gutterBottom>
                                     Select City
-                                    <City />
+                                    <City onSelectCity={this.handleCity} />
                                 </Typography>
                         </Grid>
                     </Grid>
 
                     <Grid container spacing={3} className='weather-container'>
                         <Grid item xs={6}>
-                                {weather && weather.data && weather.data.data && <WeatherData data={weather.data.data} title="Current Weather Data" />}
+                                {currentWeatherData && city && <WeatherData data={currentWeatherData} title="Current Weather Data" />}
                             </Grid>
                             <Grid item xs={6}>
-                                {forecast && forecast.data && forecast.data.data && <WeatherData data={forecast.data.data} title="5 Day Weather Forecast" />}
+                                {currentForecastData && city && <WeatherData data={currentForecastData} title="5 Day Weather Forecast" />}
                             </Grid>
                     </Grid>
 

@@ -19,15 +19,18 @@ const forecast = function forecastReducer(state = initialState, action) {
     switch (action.type) {
         case SET_FORECASTLIST:
             return {
-                data: action
+                ...state,
+                data: [...state.data, action.data],
             }
         // Set the requesting flag and append a message to be shown
         case FORECAST_REQUESTING:
             return {
+                ...state,
                 requesting: true,
                 successful: false,
                 messages: [{ body: 'Logging in...', time: new Date() }],
                 errors: [],
+                data: [...state.data]                
             }
 
         // Successful?  Reset the FORECAST state.

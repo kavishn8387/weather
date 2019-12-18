@@ -14,10 +14,17 @@ class City extends PureComponent {
     }
 
     componentWillMount = () => {
-        const { forecast } = this.props;
-        forecast && forecast.data && forecast.data.data && this.setState({
-            city: forecast.data.data.city.name
-        });
+        // const { forecast } = this.props;
+        // forecast && forecast.data && forecast.data.data && this.setState({
+        //     city: forecast.data.data.city.name
+        // });
+
+        const city = localStorage.getItem('selectedCity');
+        if(city) {
+            this.setState({
+                city
+            })
+        }
     }
 
     getWeatherData = async () => {
@@ -40,9 +47,21 @@ class City extends PureComponent {
         this.setState({
             city: event.target.value
         }, () => {
-            this.getWeatherData();
+            const { forecast, onSelectCity } = this.props;
+            onSelectCity(this.state.city);  
+            
+            let status = true;
+            forecast.data.map((item) => {
+                if (item.city.name === this.state.city) {
+                    status = false;
+                }
+            });
+            if (status) {
+                this.getWeatherData();
+            }
         });
     }
+
     render () {
         const { city } = this.state;
         return (
@@ -53,6 +72,7 @@ class City extends PureComponent {
                     
                 >
                     <Select
+                        // ref='refCity'
                         native
                         value={city || 'select'}
                         onChange={this.handleChange}
