@@ -21,39 +21,32 @@ class Dashboard extends PureComponent {
     }
 
     static getDerivedStateFromProps = (props, state) => {
-        console.log('getDerivedStateFromProps', props, state)
         const { weather, forecast } = props;
         const { city, currentWeatherData, currentForecastData } = state;
         let derivedState = {};
-        // const localStorageCity = localStorage.getItem('selectedCity');
         weather && weather.data && weather.data.map((item) => {
             if (item.name === city) {
                 derivedState = { currentWeatherData: item };
             }
-            console.log('cityname', city, derivedState);
         })
         forecast && forecast.data && forecast.data.map((item) => {
             if (item.city && item.city.name === city) {
-                derivedState = { ...derivedState, currentForecastData: item };
+                derivedState = { ...derivedState, currentForecastData: item, city };
             }
-            console.log('cityname', city, derivedState);
         })
 
-        console.log('derivedState', derivedState, 'city', city);
         return derivedState;
     }
 
     componentWillMount = () => {
         const { login, history, user, weather, forecast } = this.props;
         const { city } = this.state;
-        // console.log('llllll', login, user)
         if (!(login && login.successful && user && user.token === true)) {
             history.push('/');
         }
     }
 
     logout = () => {
-        console.log('logout');
         this.props.logoutRequest();
         this.props.clearForecast();
         this.props.clearWeather();
@@ -79,7 +72,6 @@ class Dashboard extends PureComponent {
     render() {
         const { classes, weather, forecast } = this.props;
         const { aboutUs, city, currentWeatherData, currentForecastData } = this.state;
-        console.log('currentWeatherData inside dashboard', currentWeatherData, 'currentForecastData', currentForecastData);
 
         return (
             <Grid container>

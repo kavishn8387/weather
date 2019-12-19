@@ -3,17 +3,8 @@ import { Grid, Card, CardHeader, CardContent, Typography, List, ListItem, Divide
 import '../../Containers/Dashboard/styles.css';
 
 class WeatherData extends PureComponent {
-    constructor(props) {
-        super(props);
-        const { title, data} = this.props;
-        this.state = {
-            title,
-            data
-        }
-
-    }
     render () {
-        const { title, data} = this.state;
+        const { title, data} = this.props;
         
         return (
             <Grid item xs={12} sm={6} md={12}>
@@ -31,7 +22,7 @@ class WeatherData extends PureComponent {
                         >
                             <Typography variant="h6" color="textSecondary">
                             {
-                                data.list && <List>
+                                data && data.list && <List>
                                     {
                                         data.list.map((item) => (
                                             <React.Fragment>
@@ -49,7 +40,7 @@ class WeatherData extends PureComponent {
                             }
 
                             {
-                                data.coord && <List>
+                                data && data.coord && <List>
                                     {
                                         <ListItem>
                                             Weather: {data.weather[0].description} <br />
